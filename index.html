@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fast Fashion Environmental Impact Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>The Hidden Cost of Fast Fashion</h1>
+        <p class="hero-subtitle">An Interactive Data Story on Environmental Impact</p>
+        <div class="hero-stats">
+            <div class="stat">
+                <span class="stat-number">10</span>
+                <span class="stat-label">Countries Analyzed</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">5</span>
+                <span class="stat-label">Major Brands</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">10</span>
+                <span class="stat-label">Years of Data</span>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <div class="scroll-arrow">↓</div>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Navigation Sidebar -->
+    <nav class="sidebar-nav" id="sidebarNav">
+        <div class="nav-header">Chapters</div>
+        <a href="#chapter1" class="nav-item active" data-chapter="1">
+            <span class="nav-number">01</span>
+            <span class="nav-title">Global Impact</span>
+        </a>
+        <a href="#chapter2" class="nav-item" data-chapter="2">
+            <span class="nav-number">02</span>
+            <span class="nav-title">Regional Analysis</span>
+        </a>
+        <a href="#chapter3" class="nav-item" data-chapter="3">
+            <span class="nav-number">03</span>
+            <span class="nav-title">Brand Rankings</span>
+        </a>
+        <a href="#chapter4" class="nav-item" data-chapter="4">
+            <span class="nav-number">04</span>
+            <span class="nav-title">Trends Over Time</span>
+        </a>
+        <a href="#chapter5" class="nav-item" data-chapter="5">
+            <span class="nav-number">05</span>
+            <span class="nav-title">Brand Progress</span>
+        </a>
+        <a href="#chapter6" class="nav-item" data-chapter="6">
+            <span class="nav-number">06</span>
+            <span class="nav-title">Cost Efficiency</span>
+        </a>
+        <a href="#chapter7" class="nav-item" data-chapter="7">
+            <span class="nav-number">07</span>
+            <span class="nav-title">Relationships</span>
+        </a>
+        <a href="#chapter8" class="nav-item" data-chapter="8">
+            <span class="nav-number">08</span>
+            <span class="nav-title">Best Performers</span>
+        </a>
+        <a href="#chapter9" class="nav-item" data-chapter="9">
+            <span class="nav-number">09</span>
+            <span class="nav-title">Economics vs Environment</span>
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="dashboard-container">
+        
+        <!-- Chapter 1: Global Impact -->
+        <section class="chapter" id="chapter1">
+            <div class="chapter-header">
+                <span class="chapter-number">Chapter 01</span>
+                <h2 class="chapter-title">Global Impact Overview</h2>
+                <p class="chapter-description">
+                    Where in the world is fast fashion leaving its mark? This interactive map reveals 
+                    the environmental impact index across countries, combining carbon emissions, water 
+                    usage, and waste production.
+                </p>
+            </div>
+            <div class="chart-card">
+                <div id="q7-chart"></div>
+            </div>
+        </section>
+
+        <!-- Chapter 2: Regional Analysis -->
+        <section class="chapter" id="chapter2">
+            <div class="chapter-header">
+                <span class="chapter-number">Chapter 02</span>
+                <h2 class="chapter-title">Regional Comparison</h2>
+                <p class="chapter-description">
+                    How do countries compare in their environmental footprint? Toggle between carbon 
+                    emissions, water usage, and landfill waste to see which regions are most efficient.
+                </p>
+            </div>
+            <div class="chart-card">
+                <div id="q5-chart"></div>
+            </div>
+        </section>
+
+        <!-- Chapter 3: Brand Rankings -->
+        <section class="chapter" id="chapter3">
+            <div class="chapter-header">
+                <span class="chapter-number">Chapter 03</span>
+                <h2 class="chapter-title">The Worst Offenders</h2>
+                <p class="chapter-description">
+                    Which brands have the highest carbon emissions? Filter by country to see how 
+                    brand rankings change across different manufacturing regions.
+                </p>
+            </div>
+            <div class="chart-card">
+                <div id="q1-chart"></div>
+            </div>
+        </section>
+
+        <!-- Chapter 4: Time Trends -->
+        <section class="chapter" id="chapter4">
+            <div class="chapter-header">
+                <span class="chapter-number">Chapter 04</span>
+                <h2 class="chapter-title">A Decade of Change</h2>
+                <p class="chapter-description">
+                    Are things getting better or worse? Track how carbon emissions and water usage 
+                    have evolved over the past decade, globally and per brand.
+                </p>
+            </div>
+            <div class="chart-card">
+                <div id="q3-chart"></div>
+            </div>
+        </section>
+
+        <!-- Chapter 5: Brand Progress -->
+        <section class="chapter" id="chapter5">
+            <div class="chapter-header">
+                <span class="chapter-number">Chapter 05</span>
+                <h2 class="chapter-title">Who's Improving?</h2>
+                <p class="chapter-description">
+                    Compare sustainability performance across brands over time. See which companies 
+                    are making genuine progress and which are falling behind.
+                </p>
+            </div>
+            <div class="chart-card">
+                <div id="q8-chart"></div>
+            </div>
+        </section>
+
+        <!-- Chapter 6: Cost Efficiency -->
+        <section class="chapter" id="chapter6">
+            <div class="chapter-header">
+                <span class="chapter-number">Chapter 06</span>
+                <h2 class="chapter-title">Cost Efficiency Fluctuations</h2>
+                <p class="chapter-description">
+                    How stable are environmental costs? This heatmap reveals which brands show 
+                    consistent efficiency versus those with volatile performance.
+                </p>
+            </div>
+            <div class="chart-card">
+                <div id="q9-chart"></div>
+            </div>
+        </section>
+
+        <!-- Chapter 7: Relationships -->
+        <section class="chapter" id="chapter7">
+            <div class="chapter-header">
+                <span class="chapter-number">Chapter 07</span>
+                <h2 class="chapter-title">Production vs Waste</h2>
+                <p class="chapter-description">
+                    Is higher production always linked to more waste? Explore the relationship 
+                    between manufacturing volume and environmental impact.
+                </p>
+            </div>
+            <div class="chart-card">
+                <div id="q2-chart"></div>
+            </div>
+        </section>
+
+        <!-- Chapter 8: Best Performers -->
+        <section class="chapter" id="chapter8">
+            <div class="chapter-header">
+                <span class="chapter-number">Chapter 08</span>
+                <h2 class="chapter-title">The Leaders in Sustainability</h2>
+                <p class="chapter-description">
+                    Which brands are most sustainable per production unit? Use the parallel coordinates 
+                    to filter and compare across multiple environmental metrics.
+                </p>
+            </div>
+            <div class="chart-card">
+                <div id="q4-chart"></div>
+            </div>
+        </section>
+
+        <!-- Chapter 9: Economics vs Environment -->
+        <section class="chapter" id="chapter9">
+            <div class="chapter-header">
+                <span class="chapter-number">Chapter 09</span>
+                <h2 class="chapter-title">The Economic Trade-off</h2>
+                <p class="chapter-description">
+                    Can brands be both economically successful and environmentally responsible? 
+                    Examine the correlation between GDP contribution and sustainability metrics.
+                </p>
+            </div>
+            <div class="chart-card">
+                <div id="q6-chart"></div>
+            </div>
+        </section>
+
+        <!-- Conclusion Section -->
+        <section class="conclusion">
+            <h2>The Path Forward</h2>
+            <p>
+                The data tells a complex story: while some brands are making strides in sustainability, 
+                the fast fashion industry as a whole continues to have a significant environmental impact. 
+                The question isn't just about who's doing better, but whether the entire model is sustainable.
+            </p>
+            <div class="key-insights">
+                <div class="insight">
+                    <h3>🌍 Global Impact</h3>
+                    <p>Manufacturing concentration in Asia drives higher regional impacts</p>
+                </div>
+                <div class="insight">
+                    <h3>📈 Mixed Progress</h3>
+                    <p>Some brands improving while overall industry impact remains high</p>
+                </div>
+                <div class="insight">
+                    <h3>💰 Economic Pressure</h3>
+                    <p>Trade-offs between profitability and environmental responsibility persist</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Load visualization modules -->
+    <script src="visualizations/q7.js"></script>
+    <script src="visualizations/q5.js"></script>
+    <script src="visualizations/q1.js"></script>
+    <script src="visualizations/q3.js"></script>
+    <script src="visualizations/q8.js"></script>
+    <script src="visualizations/q9.js"></script>
+    <script src="visualizations/q2.js"></script>
+    <script src="visualizations/q4.js"></script>
+    <script src="visualizations/q6.js"></script>
+    
+    <!-- Main script that initializes everything -->
+    <script src="script.js"></script>
+    
+    <!-- Navigation script -->
+    <script src="navigation.js"></script>
+</body>
+</html>
